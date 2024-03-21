@@ -1,0 +1,25 @@
+BGC #209CEE
+Font #D8D
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+{resObj.map((restaurant)=> <Restaurant_card resData={restaurant}/>)}
+
+props
+
+this is knownn as properties which is used to send data to the component dynamically
+So, when we want to send the data to a component dynaically to a component then we will use prop to send the data.
+The JS takes the arguments as the props from the component and wraps it as a JS object and sends it to the component
+
+
+------------Never ever keep the hard coded data in components file
+We can only keep one export default inside the component file
+
+----------------------------------------------
+json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants[0].info.name
+
+json.data.cards
+
