@@ -4,8 +4,6 @@ const Restaurant_card = (props) =>{
 
     const {resData}=props;
     const {name,cloudinaryImageId,cuisines,avgRating,costForTwo}=resData?.info;
-    //console.log("the below is API data");
-    //console.log(resData);
     return( 
         <div className="m-4 w-[250px] h-[325px] border-2 rounded-md drop-shadow-md hover:scale-[98%]">
                 <img className="w-[250px] h-[200px] rounded-md" alt=" Noodles"  src={CDN_URL+cloudinaryImageId} />

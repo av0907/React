@@ -10,20 +10,27 @@ import Cart from "./components/Cart";
 import Login from "./components/Login";
 import Biryani from "./components/Biryani";
 import Pizzas from "./components/Pizzas";
-import South_Indian from "./components/South_Indian";
+import North_Indian from "./components/North_Indian";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Dosa from "./components/Dosa";
+import Cakes from "./components/Cakes";
+import Parotta from "./components/Parotta";
+import Burger from "./components/Burger";
 
 /*const Ap=React.createElement("h1",{},"I am Aditya");*/
 
 const App =() => {
     return (
-        <div>
-            <div>  <Header/> </div>
-            <div> <Outlet/></div>
-        </div>
+        <Provider store={appStore}>
+            <div>
+                <div className="relative">  <Header/> </div>
+                <div className="relative top-[85px]"> <Outlet/></div>
+
+            </div>
+        </Provider>
     )
 }
-
-
 
 
 const appRouter = createBrowserRouter([
@@ -57,8 +64,24 @@ const appRouter = createBrowserRouter([
                 element:<Pizzas/>
             },
             {
-                path:"/South Indian",
-                element:<South_Indian/>
+                path:"/North Indian",
+                element:<North_Indian/>
+            },
+            {
+                path:"/dosa",
+                element:<Dosa/>
+            },
+            {
+                path:"/cakes",
+                element:<Cakes/>
+            },
+            {
+                path:"/paratha",
+                element:<Parotta/>
+            },
+            {
+                path:"/Burgers",
+                element:<Burger/>
             },
             {
                 path:"/restaurants/:resId",

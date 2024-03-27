@@ -9,9 +9,10 @@ import { WHATSONYOURMINDITEMS_URL } from "../utils/constants";
 const Body = () => {
 
     let [listOfRestaurants, setListOfRestaurants]=useState([]);
-    const [filteredrestaurants, setFilteredRestaurants]=useState([]);
+    let [filteredrestaurants, setFilteredRestaurants]=useState([]);
     const [whatsOnYourMindItems, setWhatsOnYourMindItems]=useState([])
     let [text, setText]=useState("")
+    
     useEffect(()=>{
         fetchData()
     },[])
@@ -23,6 +24,7 @@ const Body = () => {
        //console.log(json)
        // console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
         setListOfRestaurants(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+        //console.log(listOfRestaurants)
         setFilteredRestaurants(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
         setWhatsOnYourMindItems(json.data.cards[0].card.card.gridElements.infoWithStyle.info)
     };
@@ -39,7 +41,7 @@ const Body = () => {
             <div className="flex flex-row h-44 w-5/6 mx-36 overflow-x-hidden">
 
                 { whatsOnYourMindItems.map((item)=>
-                    <div key={item?.id} className="flex-shrink-0 w-32 h-32 m-2 rounded-full">
+                    <div key={item?.id} className="flex-shrink-0 w-[110px] h-30 m-2 rounded-full">
                     
                     <Link to={"/"+ item.action.text}> <img className="rounded-full hover:scale-[98%]" src={WHATSONYOURMINDITEMS_URL+item?.imageId}/></Link>
 
@@ -50,22 +52,30 @@ const Body = () => {
 
             </div>
 
-            <div className="m-2"> 
+            <div className="m-auto w-5/6 text-center"> 
 
-                <input type="text" className=" m-2 border-2 radius rounded-md" value={text} onChange={(e)=>{setText(e.target.value);}}/>
+                <input type="text" className=" m-3 border-2 radius rounded-3xl px-3 py-1 w-72 border-emerald-400" value={text} onChange={(e)=>{setText(e.target.value);}}/>
                 
-                <button className="border-0 m-2 px-2 rounded-sm bg-emerald-200 drop-shadow-md" onClick={()=>{
+                <button className="border-0 m-3 px-3 py-1 rounded-3xl bg-emerald-400 drop-shadow-md" onClick={()=>{
                     const search_list= listOfRestaurants.filter((res)=> res.info.name.toLowerCase().includes(text.toLowerCase()));
-                    console.log(search_list);
+                    //console.log(search_list);
                     setFilteredRestaurants(search_list);
                     }}>Search</button>
 
-                <button className="border-1 m-2 px-2 rounded-sm bg-emerald-200 drop-shadow-md" onClick={()=> {filtered_list=listOfRestaurants.filter((res)=> res.info.avgRating  > 4.0 );
+                <button className="border-1 m-3 px-3 py-1 rounded-3xl bg-emerald-400 drop-shadow-md" onClick={()=> {filtered_list=listOfRestaurants.filter((res)=> res.info?.avgRating  > 4.0 );
                                                                     setFilteredRestaurants(filtered_list);}}>Top Rated</button>
+
+                <button className="border-1 m-3 px-3 py-1 rounded-3xl bg-emerald-400 drop-shadow-md" onClick={()=> {filtered_list=listOfRestaurants.filter((res)=> res.info?.veg === true );
+                                                                    setFilteredRestaurants(filtered_list);}}>Pure Veg</button>
+
+                <button className="border-1 m-3 px-3 py-1 rounded-3xl bg-emerald-400 drop-shadow-md" onClick={()=> {setFilteredRestaurants(listOfRestaurants_duplicate.sort((a,b)=> a?.info?.sla?.deliveryTime - b?.info?.sla?.deliveryTime) )
+                                                                    }}>Fastest Delivery</button>
+                <button className="border-1 m-3 px-3  py-1 rounded-3xl bg-emerald-400 drop-shadow-md" onClick={()=> {setFilteredRestaurants(listOfRestaurants)
+                                                                    }}>All Restaurants</button>
             
             </div>
 
-            <div className="flex flex-wrap mx-48 items-center">
+            <div className="flex flex-wrap mx-48 items-center ">
                 
                 {filteredrestaurants.map((restaurant)=>  <Link to={"/restaurants/"+restaurant.info.id} key={restaurant.info.id}> <Restaurant_card resData={restaurant}/> </Link> )}
                 

@@ -8,22 +8,11 @@ import RestaurantMenuTitles from "./RestaurantMenuTitles";
 
 const RestaurantMenu = () =>{
 
-    /*const [resInfo, setResInfo]=useState(null);
-    const {resId} = useParams();
-
-    //console.log(params);
-
-   // useEffect(()=>{fetchMenu()},[])
-    
-        const fetchMenu = async () => {
-        const data= await fetch(MENU_API+resId);
-        const json = await data.json();
-        console.log(json)
-        setResInfo(json.data)
-    }*/
-
     const {resId} = useParams();
     const resInfo= useFetchMenu(resId);
+
+    console.log(resInfo);
+    
     const [showIndex, setShowIndex] = useState(0);
 
 
@@ -32,16 +21,10 @@ const RestaurantMenu = () =>{
         return <Shimmer/>
     }
 
-
-    const {name,avgRating,cuisines,costForTwoMessage,areaName, avgRatingString, totalRatingsString}=resInfo?.cards[0]?.card?.card?.info;
-    const sections=resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c) => c?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+    
+    const {name,avgRating,cuisines,costForTwoMessage,areaName, avgRatingString, totalRatingsString}=resInfo?.cards[0]?.card?.card?.info || resInfo?.cards[2]?.card?.card?.info;
+    const sections=(resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards || resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards ).filter((c) => c?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
     sections.shift();
-   // console.log("below")
-   // console.log(sections)
-
-  // const itemCards=resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[0]?.card?.card?.itemCards;
-    // console.log("item_Cards")
-   // console.log(itemCards)
 
    
     return(
