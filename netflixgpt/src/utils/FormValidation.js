@@ -1,14 +1,14 @@
-export const FormValidation = (name,email,password)=>{
+export const FormValidation = (email,password)=>{
 
-    const thisname = /([a-zA-Z\s]+)/.test(name);
+   // const thisname = /([a-zA-Z\s]+)/.test(name);
 
     const mail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
 
     const pass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(password);
 
-    if(!thisname){
+   /* if(!thisname){
         return "Name should only contain alphabets"
-    }
+    }*/
     if(!mail){
         return "Email Address is not valid"
     }
