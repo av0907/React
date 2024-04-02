@@ -4,6 +4,7 @@ import { FormValidation } from '../utils/FormValidation';
 import { auth } from '../utils/firebase';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import { LOGIN_PAGE_BG_IMAGE } from '../utils/constants';
 
 const Login = () => {
 
@@ -59,7 +60,7 @@ const Login = () => {
   return (
     <div>
       <Header/>
-      <img className="absolute h-screen w-screen" src="https://assets.nflxext.com/ffe/siteui/vlv3/9d3533b2-0e2b-40b2-95e0-ecd7979cc88b/1c01ae52-0a90-41c5-a3ab-2736447a92ed/US-en-20240311-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt="BackgroundImage"/>
+      <img className="absolute h-screen w-screen" src={LOGIN_PAGE_BG_IMAGE} alt="BackgroundImage"/>
        <form onSubmit={(e)=>e.preventDefault()} className=" p-4 h-auto w-1/4 bg-black bg-opacity-80 absolute my-36 mx-auto right-0 left-0 text-white">
           <h2 className="text-3xl p-2 font-semibold">  {isSignUp? "Sign Up" : "Sign In"}</h2>
           <input ref={email} type="text" placeholder="Email Address" className="block p-3 w-[95%] m-auto my-6 rounded-lg bg-gray-700"/>

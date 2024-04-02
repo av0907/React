@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { auth } from '../utils/firebase';
+import {LOGO_URL} from "../utils/constants"
 
 const Header = () => {
   const navigate = useNavigate();
@@ -30,8 +31,8 @@ const Header = () => {
 
 
   return (
-    <div className="absolute z-50 w-[94%]">
-      <img  className="w-1/12 bg-gradient-to-b from-black pt-2" src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png" alt="Logo"/>
+    <div className="absolute z-50 w-[94%] bg-gradient-to-b from-black">
+      <img  className="w-1/12 bg-gradient-to-b from-black pt-2" src={LOGO_URL} alt="Logo"/>
     </div>
   )
 }
