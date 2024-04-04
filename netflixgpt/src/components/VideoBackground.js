@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { API_OPTIONS } from '../utils/constants'
-import { useDispatch, useSelector } from 'react-redux'
-import { addMovieTrailer } from '../utils/movieSlice'
 
 const VideoBackground = ({movie_id}) => {
 
   const [trailer_key, setTrailer_key] = useState({});
-  const dispatch = useDispatch();
 
   const getMovieVideos = async (movie_id)=>{
 
@@ -26,8 +23,9 @@ const VideoBackground = ({movie_id}) => {
 
 
   return (
-    <div className='w-screen h-[80%] overflow-hidden'>
-      <iframe className="w-screen aspect-video p-0" src={"https://www.youtube.com/embed/"+trailer_key+"?autoplay=1&mute=1&controls=0"}  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+    <div className=' aspect-video overflow-hidden relative'>
+      <iframe className="w-screen aspect-video" src={"https://www.youtube.com/embed/"+trailer_key+"?loop=1&autoplay=1&mute=1&controls=0"}  title="Youtube Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+     
     </div>
   )
 }

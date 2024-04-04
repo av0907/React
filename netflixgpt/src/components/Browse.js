@@ -5,10 +5,13 @@ import Header from './Header';
 import useGetNowPlayingMovies from '../hooks/useGetNowPlayingMovies';
 import MainContainer from './MainContainer';
 import SecondaryContainer from './SecondaryContainer';
-
+import useGetPopularMovies from '../hooks/useGetPopularMovies';
+import useGetTopRatedMovies from '../hooks/useGetTopRatedMovies';
 const Browse = () => {
 
   useGetNowPlayingMovies();
+  useGetPopularMovies();
+  useGetTopRatedMovies();
 
   function userSignOut(){
     signOut(auth).then(() => {
@@ -26,7 +29,7 @@ const Browse = () => {
           <Header/>
         </div>
         <div className="">
-           <button onClick={userSignOut} className="border-2 p-2 m-2 text-white bg-gradient-to-b from-black font-semibold absolute right-0">SignOut</button>
+           <button onClick={userSignOut} className="border-2 p-2 m-2 text-white bg-gradient-to-b from-black font-semibold absolute right-0 z-40">SignOut</button>
         </div>
       </div>
       <MainContainer/>

@@ -32,7 +32,7 @@ const Header = () => {
 
   return (
     <div className="absolute z-50 w-[94%] bg-gradient-to-b from-black">
-      <img  className="w-1/12 bg-gradient-to-b from-black pt-2" src={LOGO_URL} alt="Logo"/>
+      <img  className="w-1/12 h-16 bg-gradient-to-b from-black pt-2" src={LOGO_URL} alt="Logo"/>
     </div>
   )
 }
